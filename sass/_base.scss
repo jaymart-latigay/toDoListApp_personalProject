@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap");
+/* || VARIABLES */
+$default-font-color: #000;
+$background-color: #4a90e2;
+$container-bgcolor: #f2f2f2;
+$container-bordercolor: #000;
+
+@mixin mp($size) {
+  /* shortcut for media queries */
+  @media only screen and (min-width: $size) {
+    /*generates a media query for screens with a minimum width equal to the value of the $size parameter. */
+    @content;
+  }
+}
+
+/* || RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 16px; /*base font size*/
+  font-family: "Montserrat", sans-serif;
+  color: $default-font-color;
+  width: 100%;
+  min-height: 100%;
+
+  @include mp(768px) {
+    /* 768px:size of tablet */
+    font-size: 22px;
+  }
+}
+
+body {
+  padding: 20px;
+  background-color: $background-color;
+}
+
+section {
+  background-color: $container-bgcolor;
+  width: 90%;
+  max-width: 700px; /*will only apply to screens with a width less than 700px*/
+  margin: auto;
+  border: 1px solid $container-bordercolor;
+  border-radius: 10px;
+}
