@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+  </head>
+  <body>
+    <main>
+      <!--SECTION FOR ADDING THE LIST-->
+      <section class="newItemEntry">
+        <form id="itemEntryForm">
+          <label for="newItem">Enter a new TO DO item</label>
+          <input
+            id="newItem"
+            type="text"
+            size="40"
+            autocomplete="on"
+            placeholder="Add item"
+            tabindex="0"
+          />
+          <!--size: limit for number of characters allowed-->
+          <button
+            id="addItem"
+            class="button"
+            title="Add new Item"
+            aria-label="Add new item to list"
+            tab-index="0"
+          >
+            +
+          </button>
+          <!--aria-label: to describe what text does (what screen reader will read)-->
+        </form>
+      </section>
+
+      <!--SECTION FOR SHOWING THE LIST ITEMS-->
+      <section class="listContainer">
+        <div class="listTitle">
+          <h1>To Do List</h1>
+          <button
+            id="clearItems"
+            class="button"
+            title="Clear the list"
+            aria-label="Remove all items from the list"
+            tabindex="0"
+          >
+            Clear
+          </button>
+          <!--title: pops up when you mouse over it-->
+        </div>
+        <hr />
+        <!--horizontal rule (line) is for separating the title and the list-->
+        <div id="listItems">
+          <!--REMOVE LATER, just for basis-->
+          <div class="item">
+            <input type="checkbox" id="1" tabindex="0" />
+            <label for="1">Eat</label>
+            <input type="checkbox" id="2" tabindex="0" />
+            <label for="2">Sleep</label>
+          </div>
+          <!--------------------------------------------->
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
