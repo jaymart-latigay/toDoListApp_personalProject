@@ -1,0 +1,43 @@
+.newItemEntry {
+  position: sticky;
+  top: 0;
+  margin: 1rem;
+  padding: 0.75rem;
+
+  form {
+    /*nested styles */
+    display: flex;
+    justify-content: space-between;
+
+    label {
+      /*takes off label from screen but still accessible to screen readers */
+      position: absolute;
+      left: -10000px;
+    }
+
+    input[type="text"] {
+      width: 80%; /*takes 80% of the space*/
+      font-size: 1.25rem;
+      border: 2px solid $textbox-bordercolor;
+      border-radius: 10px;
+      padding: 0.75rem;
+      outline: none; /*don't set it to none if you don't have a plan for hover or focus */
+    }
+
+    input[type="text"]:focus,
+    input[type="text"]:hover {
+      box-shadow: 4px 2px 5px #000; /*horizontal offset, vertical offset, blur radius, spread radius, color*/
+    }
+
+    button {
+      /* for button in newItemEntry class */
+      font-size: 1.25rem;
+      background-color: $add-button-color;
+      padding: 0.75rem;
+      @include mp(768px) {
+        /*font size of text in button will change to 1.5rem when screen width is 768px or more */
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
