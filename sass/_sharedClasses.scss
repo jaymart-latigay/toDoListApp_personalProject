@@ -1,0 +1,20 @@
+.button {
+  /*indicates min size of button*/
+  width: 15%;
+  min-width: 48px; /*recommended min mobile friendly size of a button*/
+  min-height: 48px;
+  color: $button-textcolor;
+  border: 2px solid $textbox-bordercolor;
+  border-radius: 10px;
+  outline: none; /*don't set it to none if you don't have a plan for hover */
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  filter: brightness(120%);
+  box-shadow: 4px 2px 5px #000; /*horizontal offset, vertical offset, blur radius, spread radius, color*/
+}
