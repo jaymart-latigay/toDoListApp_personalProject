@@ -1,4 +1,4 @@
-export default class TodoList {
+export default class ToDoList {
   constructor() {
     this._list = []; // Array to store the list of tasks
   }
