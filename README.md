@@ -3,7 +3,7 @@
 ## Description:
 ### A responsive To Do List web app that allows user to save and delete tasks. Utilizes persistent data to store initially added task. 
 
-
+### Languages: HTML, CSS (SASS), JavaScript
 
 
 ## Normal web size screenshot
