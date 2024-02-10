@@ -14,7 +14,7 @@
       padding: 0 0.1rem;
       margin-bottom: 0.5rem;
 
-      @include mp(768px) {
+      @include mq(768px) {
         padding: 0 0.5rem;
       }
     }
@@ -48,5 +48,10 @@
     label {
       font-size: 1.1rem;
     }
+  }
+
+  .confirmation {
+    position: absolute;
+    left: -10000px;
   }
 }

@@ -108,11 +108,17 @@ const addClickListnerToCheckbox = (checkbox) => {
   checkbox.addEventListener("click", (event) => {
     toDoList.removeItemFromList(checkbox.id); // Remove the task from the list
     updatePersistentData(toDoList.getList());
+    const removedText = getLabelText(checkbox.id);
+    updateScreenReaderConfirmation(removedText, "removed from list");
     setTimeout(() => {
       //refresh the page after 1 second
       refreshThePage();
     }, 1000);
   });
+};
+
+const getLabelText = (checkboxId) => {
+  return document.getElementById(checkboxId).nextElementSibling.textContent;
 };
 
 const updatePersistentData = (listArray) => {
@@ -136,6 +142,7 @@ const processSubmission = () => {
   const toDoItem = createNewItem(nextItemId, newEntryText); // Create a new item
   toDoList.addItemToList(toDoItem); // Add the new item to the list
   updatePersistentData(toDoList.getList());
+  updateScreenReaderConfirmation(newEntryText, "added");
   refreshThePage();
 };
 
@@ -157,4 +164,10 @@ const createNewItem = (itemId, itemText) => {
   toDo.setId(itemId); // Set the id of the task
   toDo.setItem(itemText); // Set the task
   return toDo;
+};
+
+const updateScreenReaderConfirmation = (newEntryText, actionVerb) => {
+  document.getElementById(
+    "confirmation"
+  ).textContent = `${newEntryText} ${actionVerb}.`; // Set the text content of the confirmation message
 };
