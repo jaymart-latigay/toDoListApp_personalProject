@@ -28,17 +28,30 @@ const initApp = () => {
       const confirmed = confirm("Are you sure you want to clear the list?");
       if (confirmed) {
         toDoList.clearList(); // Clear the list of tasks
-        //TODO: update persistent data
+        updatePersistentData(toDoList.getList());
         refreshThePage();
       }
     }
   });
 
   //Procedural (things that need to be done when the app is loaded)
-  // 1. Load the list object
+  // 1. Load the list object from web storage when app is initally loaded
+  loadListObject();
 
   // 2. Refresh the page
   refreshThePage();
+};
+
+const loadListObject = () => {
+  const storedList = localStorage.getItem("myToDOList"); // Get the list from web storage
+  if (typeof storedList != string) return; //if storedList is not a string, return
+  const parsedList = JSON.parse(storedList); // Convert the list from string to object
+  parsedList.forEach((itemObj) => {
+    // Create a new instance of the ToDoItem class
+    //use the id and item properties since getters and setters since they don't exist in the class yet
+    const newToDoItem = createNewItem(itemObj._id, itemObj._item);
+    toDoList.addItemToList(newToDoItem); // Add the task to the list
+  });
 };
 
 const refreshThePage = () => {
@@ -94,12 +107,18 @@ const addClickListnerToCheckbox = (checkbox) => {
   //add click event listener to the checkbox (for when user clicks "clear" button to remove all tasks)
   checkbox.addEventListener("click", (event) => {
     toDoList.removeItemFromList(checkbox.id); // Remove the task from the list
-    //TODO: remove from persistent data
+    updatePersistentData(toDoList.getList());
     setTimeout(() => {
       //refresh the page after 1 second
       refreshThePage();
     }, 1000);
   });
+};
+
+const updatePersistentData = (listArray) => {
+  //localStorage is a built-in object that stores data with no expiration date. The data will not be deleted when the browser is closed, and will be available the next day, week, or year. (It only store strings, hence JSON.stringify is used to convert the listArray to string)
+  //store the listArray in local storage. JSON.stringify converts a JavaScript object or value to a JSON string. "myToDoList" is the name of the key
+  localStorage.setItem("myToDoList", JSON.stringify(listArray));
 };
 
 const clearItemEntryField = () => {
@@ -116,7 +135,7 @@ const processSubmission = () => {
   const nextItemId = calcNextItemId(); // Calculate the next item id
   const toDoItem = createNewItem(nextItemId, newEntryText); // Create a new item
   toDoList.addItemToList(toDoItem); // Add the new item to the list
-  //TODO: update persistent data
+  updatePersistentData(toDoList.getList());
   refreshThePage();
 };
 
