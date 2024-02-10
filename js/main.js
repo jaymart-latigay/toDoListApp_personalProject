@@ -20,6 +20,20 @@ const initApp = () => {
     processSubmission();
   });
 
+  const clearItems = document.getElementById("clearItems");
+  clearItems.addEventListener("click", (event) => {
+    const list = toDoList.getList();
+    if (list.length) {
+      //if length of list is not 0
+      const confirmed = confirm("Are you sure you want to clear the list?");
+      if (confirmed) {
+        toDoList.clearList(); // Clear the list of tasks
+        //TODO: update persistent data
+        refreshThePage();
+      }
+    }
+  });
+
   //Procedural (things that need to be done when the app is loaded)
   // 1. Load the list object
 
